@@ -1,0 +1,13 @@
+<p>all category test</p>
+
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
+
+<ul>
+    <% @categories.each do |category| %>
+    <li><%= link_to category.name, category_show_path(category.id) %></li>
+    <% end %>
+</ul>
+
+<%= link_to "new cat", categories_new_path %>

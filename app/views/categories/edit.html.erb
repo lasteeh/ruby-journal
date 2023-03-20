@@ -1,0 +1,23 @@
+<p>edit category test</p>
+
+<% if @category.errors.any? %>
+    <% @category.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+    <% end %>
+<% end %>
+
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
+
+<%= form_with scope: :category, url: category_update_path, method: :patch, local: true do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+
+    <%= form.submit "update"%>
+<% end %>
+
+<%= link_to "back to all cats", categories_path%>

@@ -1,0 +1,7 @@
+<p><%= @category.id %></p>
+<p><%= @category.name %></p>
+<p><%= @category.description %></p>
+
+<%= link_to "back to cats", categories_path %>
+<%= link_to "edit cat", category_edit_path %>
+<%= button_to "delete cat", category_delete_path, method: :delete%>
