@@ -9,4 +9,4 @@
 <%= link_to "back to tasks", tasks_path %>
 <%= link_to "edit task", task_edit_path %>
 <%= button_to "delete task", task_delete_path, method: :delete%>
-<%= link_to 'complete task', task_complete_path %>
+<%= button_to 'complete task', task_complete_path, method: :put %>

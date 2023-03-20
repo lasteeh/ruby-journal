@@ -13,11 +13,11 @@ Rails.application.routes.draw do
   delete '/categories/:id', to: 'categories#destroy', as: :category_delete
 
   get '/tasks', to: 'tasks#index'
-  get '/tasks/new', to: 'tasks#new'
   post '/tasks', to: 'tasks#create'
+  get '/tasks/new', to: 'tasks#new'
   get '/tasks/:id', to: 'tasks#show', as: :task_show
   get '/tasks/:id/edit', to: 'tasks#edit', as: :task_edit
   patch '/tasks/:id', to: 'tasks#update', as: :task_update
-  patch '/tasks/:id', to: 'tasks#complete', as: :task_complete
+  put '/tasks/:id', to: 'tasks#complete', as: :task_complete
   delete '/tasks/:id', to: 'tasks#destroy', as: :task_delete
 end
