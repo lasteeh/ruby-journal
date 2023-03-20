@@ -1,0 +1,24 @@
+<p>edit task test</p>
+
+<% if @task.errors.any? %>
+    <% @task.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+    <% end %>
+<% end %>
+
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
+
+<%= form_with scope: :task, url: task_update_path, method: :patch, local: true do |form| %>
+
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+
+    <%= form.label :deadline %>
+    <%= form.date_select :deadline, include_blank: true, order: [:month, :day, :year], use_short_month: true %>
+
+    <%= form.submit "update"%>
+<% end %>
+
+<%= link_to "back to all tasks", tasks_path%>
