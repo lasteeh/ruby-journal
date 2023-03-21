@@ -11,4 +11,10 @@ Rails.application.routes.draw do
   get '/categories/:id/edit', to: 'categories#edit', as: :category_edit
   patch '/categories/:id', to: 'categories#update', as: :category_update
   delete '/categories/:id', to: 'categories#destroy', as: :category_delete
+
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
+  get '/profile', to: 'users#show', as: :user_show
+  patch '/profile/edit', to: 'users#edit', as: :user_edit
+  delete '/profile', to: 'users#destroy', as: :user_delete
 end
