@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
 
     before_action :require_login
+    helper_method :logged_in?, :current_user
+
 
     def current_user
         @current_user ||= User.find_by(token: session[:user_token]) if session[:user_token]

@@ -5,18 +5,21 @@ class SessionsController < ApplicationController
     end
 
     def create
-        user = User.login(login_params)
-        if user
+        
+        if user = User.login(login_params)
             session[:user_token] = user.token
-            render json: { msessage: 'login success', token: user.token }, status: 200
+            respond_to do |format|
+                format.html { redirect_to app_path }
+                format.json { render json: { token: user.token }, status: :ok }
+            end
         else
-            render json: { error: 'invalid email/password' }, status: 401
+            render json: { error: 'invalid email/password' }, status: :unauthorized
         end
     end
 
     def destroy
         session[:user_token] = nil
-        redirect_to tasks_path, notice: 'logged outtt'
+        redirect_to root_url, notice: 'logged outtt'
     end
 
     private

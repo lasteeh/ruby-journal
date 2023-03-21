@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#home"
 
+  get '/app', to: 'pages#app'
+
   get '/categories', to: 'categories#index'
   get '/categories/new', to: 'categories#new'
   post '/categories', to: 'categories#create'

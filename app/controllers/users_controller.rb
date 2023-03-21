@@ -13,8 +13,7 @@ class UsersController < ApplicationController
             @user = User.signup(user_params)
 
             if @user.save
-                # redirect_to root_url
-                # redirect_to user_show_url
+                redirect_to login_path
             else
                 render :new, notice: 'fail', status: :unprocessable_entity
             end
