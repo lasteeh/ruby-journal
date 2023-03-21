@@ -3,10 +3,8 @@
 <% end %>
 </p>
 
-<p>
-    <% if logged_in? %>
-        <%= button_to 'logout', session_logout_path, method: :delete%>
-    <% end %>
-</p>
+<% if logged_in? %>
+    <%= button_to 'logout', logout_path, method: :delete%>
+<% end %>
 
 <p>app test</p>

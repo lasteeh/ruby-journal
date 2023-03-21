@@ -1,1 +1,7 @@
+<% if logged_in? %>
+    <%= button_to 'logout', session_logout_path, method: :delete%>
+<% else %>
+    <%= link_to 'login', login_path %>
+    <%= link_to 'signup', signup_path %>
+<% end %>
 <p>home page</p>
