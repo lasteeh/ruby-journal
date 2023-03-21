@@ -6,6 +6,6 @@ class Category < ApplicationRecord
     private
 
     def name_downcase
-        self.name = name.downcase.strip
+        self.name = name.downcase.strip if name.present?
     end
 end

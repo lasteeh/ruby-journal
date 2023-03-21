@@ -20,4 +20,10 @@ Rails.application.routes.draw do
   patch '/tasks/:id', to: 'tasks#update', as: :task_update
   put '/tasks/:id', to: 'tasks#complete', as: :task_complete
   delete '/tasks/:id', to: 'tasks#destroy', as: :task_delete
+  
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
+  get '/profile', to: 'users#show', as: :user_show
+  patch '/profile/edit', to: 'users#edit', as: :user_edit
+  delete '/profile', to: 'users#destroy', as: :user_delete
 end
