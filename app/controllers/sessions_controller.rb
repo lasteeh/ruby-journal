@@ -5,15 +5,18 @@ class SessionsController < ApplicationController
     end
 
     def create
-        if user = User.login(login_params)
-            redirect_to categories_path
+        user = User.login(login_params)
+        if user
+            session[:user_token] = user.token
+            render json: { msessage: 'login success', token: user.token }, status: 200
         else
-            render :new, notice: 'fail login', status: :unprocessable_entity
+            render json: { error: 'invalid email/password' }, status: 401
         end
     end
 
     def destroy
-
+        session[:user_token] = nil
+        redirect_to tasks_path, notice: 'logged outtt'
     end
 
     private

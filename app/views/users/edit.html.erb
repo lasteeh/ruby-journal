@@ -1,1 +1,24 @@
 <p>test edit profile page</p>
+
+<% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+    <% end %>
+<% end %>
+
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
+
+<%= form_with scope: :user, url: user_edit_path(@user), local: true do |form| %>
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+    
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+
+    <%= form.submit 'update account' %>
+<% end %>
