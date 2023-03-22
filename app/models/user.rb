@@ -16,7 +16,6 @@ class User < ApplicationRecord
 
     def generate_token
         self.token = SecureRandom.hex(20)
-        save unless new_record?
     end
 
     def self.login(login_params)

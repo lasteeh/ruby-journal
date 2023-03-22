@@ -1,11 +1,5 @@
 <p>test login page</p>
 
-<% if @user.errors.any? %>
-    <% @user.errors.full_messages.each do |message| %>
-        <p><%= message %></p>
-    <% end %>
-<% end %>
-
 <% if flash[:notice] %>
     <p><%= flash[:notice] %></p>
 <% end %>
