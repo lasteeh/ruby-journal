@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     end
 
     def create 
-        @task = Task.new(task_params)
+        @task = current_user.tasks.build(task_params)
 
         if @task.save
             redirect_to tasks_path, notice: 'task created'
@@ -52,7 +52,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-        params.require(:task).permit(:description, :deadline, :completed)
+        params.require(:task).permit(:description, :deadline, :completed, category_ids: [])
     end
 
 end
