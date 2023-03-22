@@ -1,6 +1,9 @@
 class User < ApplicationRecord
     include BCrypt
 
+    has_many :categories
+    has_many :tasks
+
     before_validation :email_downcase
     before_create :generate_token
 

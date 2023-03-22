@@ -1,5 +1,7 @@
 class Category < ApplicationRecord
     before_validation :name_downcase
+
+    belongs_to :user
     
     has_many :task_categories
     has_many :tasks, through: :task_categories
