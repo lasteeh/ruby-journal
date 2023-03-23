@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+#nav-menu {
+  display: none;
+  flex-flow: column nowrap;
+  justify-items: flex-start;
+  align-items: stretch;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  min-width: min-content;
+  color: black;
+  text-align: right;
+}
+#nav-menu > * {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+#nav-menu > *:hover {
+  background-color: hsl(0, 0%, 0%, 0.1);
+}
+
+#nav-button:checked ~ #nav-menu {
+  display: flex;
+}

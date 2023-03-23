@@ -1,6 +1,6 @@
 <div class="flex flex-wrap justify-end gap-8 p-4 capitalize">
     <% if logged_in? %>
-        <%= button_to 'logout', session_logout_path, method: :delete%>
+        <%= button_to 'logout', logout_path, method: :delete%>
     <% else %>
         <% if current_page?(root_path) %>
             <%= link_to 'login', login_path %>

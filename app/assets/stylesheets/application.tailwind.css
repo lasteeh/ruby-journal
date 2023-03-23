@@ -12,7 +12,7 @@
   }
 
   .notices {
-    @apply fixed top-0 right-0 flex flex-col gap-1 justify-start items-end text-white p-4;
+    @apply fixed top-0 right-0 flex flex-col gap-1 justify-start items-end text-white p-4 pointer-events-none;
   }
 
   .error-message {
