@@ -40,6 +40,7 @@
 }
 
 .label-links {
+  position: relative;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -48,6 +49,7 @@
   background-color: hsl(0, 0%, 60%, 1);
   box-shadow: inset 0px 1px 10px 1px hsl(0, 0%, 0%, 0.25);
   isolation: isolate;
+  overflow: hidden;
 }
 .label-links > * {
   padding: 0.25rem 2rem;
@@ -56,18 +58,61 @@
   box-shadow: -1px 0px 10px 1px hsl(0, 0%, 0%, 0.25);
   text-transform: uppercase;
   letter-spacing: 0.25ch;
-  z-index: 1;
   transition: transform 250ms ease-in-out;
+  z-index: -1;
 }
-.label-links > *:hover,
+.label-links > *:hover {
+  z-index: 3;
+  transform: scale(1.05);
+}
 .label-links > *.current {
   z-index: 2;
   transform: scale(1.05);
 }
 
 .dynamic-content {
+  height: inherit;
+  z-index: 2;
+}
+
+.paper {
   position: relative;
+  padding: 0.25rem;
+  isolation: isolate;
+  border-radius: 0.5rem;
   background-color: white;
-  height: 100%;
-  z-index: 3;
+}
+.paper::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  inset: 0.25rem;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 15px,
+    hsl(0, 0%, 0%, 0.2) 16px
+  );
+}
+
+.cork {
+  background-image: url("/assets/cork.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: -3px 3px 0px 0px hsl(0, 0%, 0%, 0.75);
+}
+
+.sticky {
+  background-color: hsl(60, 80%, 70%);
+  padding: 1rem;
+  width: min(250px, 90%);
+  transform-origin: center;
+  box-shadow: 1px 1px 10px 2px hsl(0, 0%, 0%, 0.25);
+}
+
+.sticky > .title {
+  text-decoration: underline;
 }

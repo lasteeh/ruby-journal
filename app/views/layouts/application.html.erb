@@ -12,9 +12,35 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="relative min-h-[100vh] min-h-[100dvh] min-w-[320px] overflow-hidden">
-    <main class="h-full w-full bg-neutral-200">
+  <body class="relative grid grid-cols-1 grid-rows-[min-content_1fr] min-h-[100vh] min-w-[320px] bg-neutral-200 isolate">
+    <% if request.path.include?('/app') %>
+    <header class="">
+      <div class="relative flex flex-wrap justify-end items-center z-[100] py-2 px-4 bg-primary-400 text-white isolate">
+          <%= link_to 'JApp', root_path, class: 'text-2xl'%>
+          <input type="checkbox" style="display: none;" id="nav-button">
+          <label for="nav-button" class="ml-auto capitalize cursor-pointer">
+              <% if logged_in? %>
+                  <%= current_user.username %>
+              <% else %>
+                  <span>Menu</span>
+              <% end %>
+              <span>&#9662;</span>
+          </label>
+          <div class="capitalize shadow-md" id="nav-menu">
+              <% if logged_in? %>
+                  <%= link_to 'Account', user_show_path %>
+                  <%= button_to 'Log Out', logout_path, method: :delete%>
+              <% else %>
+                  <%= link_to 'Log In', login_path %>
+              <% end %>
+          </div>
+      </div>
+      <div class="label-links">
+        <%= link_to 'categories', categories_path, class: ("#{current_page?(categories_path) ? 'current' : ''} bg-[#0F548B]") %>
+        <%= link_to 'tasks', tasks_path, class: ("#{current_page?(tasks_path) ? 'current' : ''} bg-[#14A8FF]") %>
+      </div>
+    </header>
+    <% end %>
       <%= yield %>
-    </main>
   </body>
 </html>
