@@ -1,4 +1,6 @@
-<p>all category test</p>
+<%= render layout: 'components/app' do %>
+    <div class="dynamic-content">
+            <p>all category test</p>
 
 <% if flash[:notice] %>
     <p><%= flash[:notice] %></p>
@@ -11,3 +13,5 @@
 </ul>
 
 <%= link_to "new cat", categories_new_path %>
+    </div>
+<% end %>

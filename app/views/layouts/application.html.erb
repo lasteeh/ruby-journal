@@ -12,8 +12,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="relative min-h-[100vh] min-h-[100dvh] min-w-[320px] bg-neutral-200 isolate">
+  <body class="relative min-h-[100vh] min-h-[100dvh] min-w-[320px] overflow-hidden">
+    <main class="h-full w-full bg-neutral-200">
       <%= yield %>
     </main>
   </body>

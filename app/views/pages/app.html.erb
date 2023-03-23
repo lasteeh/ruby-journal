@@ -1,21 +1,5 @@
-<div class="relative flex flex-wrap justify-end items-center z-[100] py-2 px-4 bg-primary-400 text-white">
-<h1 class="text-2xl">JApp</h1>
-<input type="checkbox" style="display: none;" id="nav-button">
-<label for="nav-button" class="ml-auto capitalize cursor-pointer">
-  <% if logged_in? %>
-    <%= current_user.username %>
-  <% else %>
-    <span>Menu</span>
-  <% end %>
-  <span>&#9662;</span>
-</label>
-<div class="capitalize shadow-md" id="nav-menu">
-  <% if logged_in? %>
-    <%= link_to 'Account', user_show_path %>
-    <%= button_to 'Log Out', logout_path, method: :delete%>
-  <% else %>
-    <%= link_to 'Log In', login_path %>
-  <% end %>
-</div>
-</div>
-
+<%= render layout: 'components/app' do %>
+  <div class="dynamic-content">
+  test
+  </div>
+<% end %>
