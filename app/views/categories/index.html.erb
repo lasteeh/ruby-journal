@@ -6,9 +6,12 @@
         </ul>
         <% end %>
 
-        <ul class="categories cork | grow w-[min(650px,90%)] flex flex-wrap justify-center items-start pb-24" id="stickycat">
+        <ul class="categories cork | grow w-[min(650px,90%)] flex flex-wrap justify-center content-center items-start pb-24" id="stickycat">
             <% @categories.each do |category| %>
-            <li class="sticky" style="transform: rotate(<%= rand(-4..4)%>deg);" onmouseover="this.style.transform='rotate(0deg) translateY(-16%)';" onmouseout="this.style.transform='rotate(<%= rand(-4..4)%>deg)'"><%= link_to category.name, category_show_path(category.id)%></li>
+            <li class="sticky | flex flex-col" style="transform: rotate(<%= rand(-4..4)%>deg);" onmouseover="this.style.transform='rotate(0deg) translateY(-16%)';" onmouseout="this.style.transform='rotate(<%= rand(-4..4)%>deg)'">
+                <%= link_to category.name, category_show_path(category.id), class: 'title capitalize' %>
+                <span class="text-2xl"><%= category.description%></span>
+            </li>
             <% end %>
         </ul>
 

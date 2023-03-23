@@ -77,7 +77,7 @@
 
 .paper {
   position: relative;
-  padding: 0.25rem;
+  padding: 0.5rem;
   isolation: isolate;
   border-radius: 0.5rem;
   background-color: white;
@@ -87,11 +87,11 @@
   display: block;
   position: absolute;
   z-index: -1;
-  inset: 0.25rem;
+  inset: 0.5rem;
   background: repeating-linear-gradient(
     transparent,
-    transparent 15px,
-    hsl(0, 0%, 0%, 0.2) 16px
+    transparent 17px,
+    hsl(0, 0%, 0%, 0.4) 18px
   );
 }
 
