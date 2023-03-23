@@ -1,0 +1,15 @@
+
+
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
+
+<%= form_with model: @category do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+
+    <%= form.submit "create cat"%>
+<% end %>

@@ -1,15 +1,18 @@
-    <div class="">
-            <p>all category test</p>
+<main class="relative font-hand flex flex-wrap justify-evenly items-start gap-4 p-4 ">
 
-<% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-<% end %>
+        <% if flash[:notice] %>
+        <ul class="notices">
+            <p class="success-message"><%= flash[:notice] %></p>
+        </ul>
+        <% end %>
 
-<ul>
-    <% @categories.each do |category| %>
-    <li><%= link_to category.name, category_show_path(category.id) %></li>
-    <% end %>
-</ul>
+        <ul class="cork | grow w-[min(650px,90%)]" id="stickycat">
+            <% @categories.each do |category| %>
+            <li><%= link_to category.name, category_show_path(category.id) %></li>
+            <% end %>
+        </ul>
 
-<%= link_to "new cat", categories_new_path %>
-    </div>
+        <div class="sticky" style="transform: rotate(<%= rand(-3..3)%>deg)" id="stickyform">
+            <%= render partial: 'categories/stickyform', locals: {category: Category.new} %>
+        </div>
+</main>
