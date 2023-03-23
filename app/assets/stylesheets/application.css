@@ -95,11 +95,16 @@
   );
 }
 
+.categories.cork .sticky {
+  margin-block-end: -6%;
+}
+
 .cork {
   background-image: url("/assets/cork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 
+  min-height: 500px;
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: -3px 3px 0px 0px hsl(0, 0%, 0%, 0.75);
@@ -112,6 +117,8 @@
   min-height: 120px;
   transform-origin: center;
   box-shadow: 1px 1px 4px 2px hsl(0, 0%, 0%, 0.1);
+  word-break: break-all;
+  transition: all 250ms ease-in-out;
 }
 
 .sticky > .title {

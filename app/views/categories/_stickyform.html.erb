@@ -4,12 +4,14 @@
     <p><%= flash[:notice] %></p>
 <% end %>
 
-<%= form_with model: @category do |form| %>
+<%= form_with model: @category, class: 'flex flex-col' do |form| %>
+    <p class="underline text-center">New Category!</p>
+
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'bg-transparent border-t-0 border-x-0 border-dotted border-b-4 border-black' %>
 
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, class: 'bg-transparent border-t-0 border-x-0 border-dotted border-b-4 border-black' %>
 
-    <%= form.submit "create cat"%>
+    <%= form.submit "Post", class: 'mt-4 cursor-pointer'%>
 <% end %>
