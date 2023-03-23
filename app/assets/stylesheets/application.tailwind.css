@@ -2,12 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  .hyper-link {
+    @apply text-primary-400 hover:text-primary-200;
+  }
+
+  .set-background {
+    @apply absolute inset-0 z-[-1] isolate;
+  }
+
+  .notices {
+    @apply fixed top-0 right-0 flex flex-col gap-1 justify-start items-end text-white p-4;
+  }
+
+  .error-message {
+    @apply notice-message bg-red-700;
+  }
+
+  .success-message {
+    @apply notice-message bg-green-700;
+  }
+
+  .confirm-button {
+    @apply button-option bg-green-700 hover:bg-green-500;
+  }
+  .cancel-button {
+    @apply button-option bg-red-700 hover:bg-red-500;
   }
 }
 
-*/
+@layer utilities {
+  .button-option {
+    @apply px-4 py-2 shadow-md text-white uppercase;
+  }
+
+  .notice-message {
+    @apply px-2 py-1 rounded-md drop-shadow-md fade;
+  }
+
+  .fade {
+    animation-name: fadeInOut;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+
+  /* gs */
+
+  .front.form {
+    @apply bg-white rounded-md flex flex-col items-stretch justify-start w-[min(500px,90%)] mx-auto p-8 my-4 text-left gap-4 shadow-md;
+  }
+
+  .front.form .form-group {
+    @apply flex flex-col-reverse items-stretch justify-start;
+  }
+
+  .form-group label {
+    @apply uppercase text-sm opacity-60 tracking-widest;
+  }
+
+  .form-group input {
+    @apply border-neutral-900/50 rounded-sm p-4;
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+
+  25%,
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
