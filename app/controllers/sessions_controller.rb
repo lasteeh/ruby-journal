@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     end
 
     def create
+        return redirect_to app_path if logged_in?
         
         if user = User.login(login_params)
             session[:user_token] = user.token
@@ -14,7 +15,10 @@ class SessionsController < ApplicationController
                 format.json { render json: { token: user.token }, status: :ok }
             end
         else
-            render json: { error: 'invalid email/password' }, status: :unauthorized
+            respond_to do |format|
+                format.html { render :new, status: :unprocessable_entity, flash: {notice: 'invalid email/password'} }
+                format.json { render json: { error: 'invalid email/password' }, status: :unauthorized }
+            end
         end
     end
 
