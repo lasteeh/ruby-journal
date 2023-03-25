@@ -16,6 +16,13 @@ class TasksController < ApplicationController
         @task = current_user.tasks.build(task_params)
 
         if @task.save
+            # binding.break
+            task_category_params[:category_ids].each do |category_id|
+                if category_id != ""
+                    @task_category = TaskCategory.new(task_id: @task.id, category_id: category_id)
+                    @task_category.save
+                end
+            end
             redirect_to tasks_path, notice: 'task created'
         else
             render :new, notice: 'failed', status: :unprocessable_entity
@@ -52,7 +59,11 @@ class TasksController < ApplicationController
     end
 
     def task_params
-        params.require(:task).permit(:description, :deadline, :completed, category_ids: [])
+        params.require(:task).permit(:description, :deadline, :completed)
+    end
+
+    def task_category_params
+        params.require(:task).permit(category_ids: [])
     end
 
 end

@@ -55,7 +55,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # See https://github.com/pry/pry
-# gem 'pry', '~> 0.13.1'
+# gem 'pry'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
