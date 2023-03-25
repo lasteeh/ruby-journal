@@ -17,6 +17,9 @@
     <%= form.label :deadline %>
     <%= form.date_select :deadline, include_blank: true, order: [:month, :day, :year], use_short_month: true %>
 
+    <%= form.label :category_ids %>
+    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+
     <%= form.submit "create task" %>
 <% end %>
 

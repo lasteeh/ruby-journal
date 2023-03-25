@@ -1,10 +1,49 @@
-<p><% if logged_in? %>
-  Welcome <%= current_user.username %>!
-<% end %>
-</p>
+  <main class="font-hand flex flex-wrap justify-evenly items-start gap-4 p-4 ">
+    <section class="grow w-[min(350px,90%)] grid grid-cols-1 grid-rows-[auto_1fr] gap-4">
+      <p class="paper | block text-5xl text-center">Priorities</p>
+      <div class="paper | min-h-[500px] bg-white rounded-lg ">
+        <ul>
+          <li>sample</li>
+          <li>sample</li>
+          <li>sample</li>
+          <li>sample</li>
+          <li>sample</li>
+          <li>sample</li>
+          <li>sample</li>
+          <li>sample</li>
+          <li>sample</li>
+          <li>sample</li>
+          <li>sample</li>
+        </ul>
+      </div>
+    </section>
+    <section class="cork | flex flex-wrap justify-center items-center gap-8 grow-[2]">
+        <ul class="sticky list-disc" style="transform: rotate(<%= rand(-5..5)%>deg)" ><p class="title">CATE</p>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+        </ul>
 
-<% if logged_in? %>
-    <%= button_to 'logout', logout_path, method: :delete%>
-<% end %>
+        <ul class="sticky list-disc" style="transform: rotate(<%= rand(-5..5)%>deg)" ><p class="title">CATE</p>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+        </ul>
 
-<p>app test</p>
+        <ul class="sticky list-disc" style="transform: rotate(<%= rand(-5..5)%>deg)" ><p class="title">CATE</p>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+        </ul>
+
+        <ul class="sticky list-disc" style="transform: rotate(<%= rand(-5..5)%>deg)" ><p class="title">CATE</p>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+          <li class="ml-6">taskk</li>
+        </ul>
+    </section>
+  </main>

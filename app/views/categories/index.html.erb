@@ -1,13 +1,21 @@
-<p>all category test</p>
+<main class="relative font-hand flex flex-wrap justify-evenly items-start gap-4 p-4 ">
 
-<% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-<% end %>
+        <% if flash[:notice] %>
+        <ul class="notices">
+            <p class="success-message"><%= flash[:notice] %></p>
+        </ul>
+        <% end %>
 
-<ul>
-    <% @categories.each do |category| %>
-    <li><%= link_to category.name, category_show_path(category.id) %></li>
-    <% end %>
-</ul>
+        <ul class="categories cork | grow w-[min(650px,90%)] flex flex-wrap justify-center content-center items-start pb-24" id="stickycat">
+            <% @categories.each do |category| %>
+            <li class="sticky | flex flex-col" style="transform: rotate(<%= rand(-4..4)%>deg);" onmouseover="this.style.transform='rotate(0deg) translateY(-16%)';" onmouseout="this.style.transform='rotate(<%= rand(-4..4)%>deg)'">
+                <%= link_to category.name, category_show_path(category.id), class: 'title capitalize' %>
+                <span class="text-2xl"><%= category.description%></span>
+            </li>
+            <% end %>
+        </ul>
 
-<%= link_to "new cat", categories_new_path %>
+        <div class="sticky | w-[min(400px,90%)]" style="transform: rotate(<%= rand(-3..3)%>deg)" id="stickyform">
+            <%= render partial: 'categories/stickyform', locals: {category: Category.new} %>
+        </div>
+</main>

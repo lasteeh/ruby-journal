@@ -1,7 +1,4 @@
-<% if logged_in? %>
-    <%= button_to 'logout', session_logout_path, method: :delete%>
-<% else %>
-    <%= link_to 'login', login_path %>
-    <%= link_to 'signup', signup_path %>
+<%= render layout: 'components/front' do %>
+    <h1 class="text-6xl font-medium text-primary-400 p-4 drop-shadow-md">JApp</h1>
+    <h2 class="italic text-xl mb-32">your private journal</h2>
 <% end %>
-<p>home page 1</p>

@@ -13,3 +13,114 @@
  *= require_tree .
  *= require_self
  */
+
+#nav-menu {
+  display: none;
+  flex-flow: column nowrap;
+  justify-items: flex-start;
+  align-items: stretch;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  min-width: min-content;
+  color: black;
+  text-align: right;
+}
+#nav-menu > * {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+#nav-menu > *:hover {
+  background-color: hsl(0, 0%, 0%, 0.1);
+}
+
+#nav-button:checked ~ #nav-menu {
+  display: flex;
+}
+
+.label-links {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: end;
+  color: white;
+  background-color: hsl(0, 0%, 60%, 1);
+  box-shadow: inset 0px 1px 10px 1px hsl(0, 0%, 0%, 0.25);
+  isolation: isolate;
+  overflow: hidden;
+}
+.label-links > * {
+  padding: 0.25rem 2rem;
+  margin-inline-end: -2.5%;
+  margin-block: -1px;
+  box-shadow: -1px 0px 10px 1px hsl(0, 0%, 0%, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.25ch;
+  transition: transform 250ms ease-in-out;
+  z-index: -1;
+}
+.label-links > *:hover {
+  z-index: 3;
+  transform: scale(1.05);
+}
+.label-links > *.current {
+  z-index: 2;
+  transform: scale(1.05);
+}
+
+.dynamic-content {
+  height: inherit;
+  z-index: 2;
+}
+
+.paper {
+  position: relative;
+  padding: 0.5rem;
+  isolation: isolate;
+  border-radius: 0.5rem;
+  background-color: white;
+}
+.paper::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  inset: 0.5rem;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 17px,
+    hsl(0, 0%, 0%, 0.4) 18px
+  );
+}
+
+.categories.cork .sticky {
+  margin-block-end: -6%;
+}
+
+.cork {
+  background-image: url("/assets/cork.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  min-height: 500px;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: -3px 3px 0px 0px hsl(0, 0%, 0%, 0.75);
+}
+
+.sticky {
+  background-color: hsl(60, 80%, 70%);
+  padding: 1rem;
+  width: min(250px, 90%);
+  min-height: 120px;
+  transform-origin: center;
+  box-shadow: 1px 1px 4px 2px hsl(0, 0%, 0%, 0.1);
+  word-break: break-all;
+  transition: all 250ms ease-in-out;
+}
+
+.sticky > .title {
+  text-decoration: underline;
+}

@@ -1,6 +1,9 @@
 class User < ApplicationRecord
     include BCrypt
 
+    has_many :categories
+    has_many :tasks
+
     before_validation :email_downcase
     before_create :generate_token
 
@@ -16,7 +19,6 @@ class User < ApplicationRecord
 
     def generate_token
         self.token = SecureRandom.hex(20)
-        save unless new_record?
     end
 
     def self.login(login_params)

@@ -1,13 +1,15 @@
-<p>all tasks test</p>
+    <div class="">
+        <p>all tasks test</p>
 
-<% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-<% end %>
+        <% if flash[:notice] %>
+            <p><%= flash[:notice] %></p>
+        <% end %>
 
-<ul>
-    <% @tasks.each do |task| %>
-    <li><%= link_to task.description, task_show_path(task.id) %></li>
-    <% end %>
-</ul>
+        <ul>
+            <% @tasks.each do |task| %>
+            <li><%= link_to task.description, task_show_path(task.id) %></li>
+            <% end %>
+        </ul>
 
-<%= link_to "new task", tasks_new_path %>
+        <%= link_to "new task", tasks_new_path %>
+    </div>
