@@ -10,13 +10,14 @@ class UsersController < ApplicationController
     end
 
     def create
+        debugger
         if signup_params[:password] == signup_params[:password_confirmation]
             @user = User.signup(user_params)
 
             if @user.save
                 redirect_to login_path
             else
-                render :new, notice: 'fail', status: :unprocessable_entity
+                render :new, status: :unprocessable_entity
             end
         else
             render :new, notice: 'password fail', status: :unprocessable_entity

@@ -124,3 +124,7 @@
 .sticky > .title {
   text-decoration: underline;
 }
+
+.field_with_errors > * {
+  width: 100%;
+}

@@ -1,23 +1,25 @@
-<p>new category test</p>
-
+<main class="relative font-hand flex flex-wrap justify-center items-center gap-12 p-4 ">
 <% if @category.errors.any? %>
     <% @category.errors.full_messages.each do |message| %>
         <p><%= message %></p>
     <% end %>
 <% end %>
 
-<% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-<% end %>
+<div class="paper | shadow-md origin-center" style="transform: rotate(<%= rand(-3..3)%>deg)" onmouseover="this.style.transform='rotate(<%= rand(-3..3)%>deg) translateY(-16%)';" onmouseout="this.style.transform='rotate(<%= rand(-3..3)%>deg)'">
+    <%= link_to raw("<span>&#8592;</span> back to all cats"), categories_path%>
+</div>
 
-<%= form_with model: @category do |form| %>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<div class="sticky | w-[min(400px,90%)]" style="transform: rotate(<%= rand(-3..3)%>deg)" id="stickyform">
+    <%= form_with model: @category, class: 'flex flex-col' do |form| %>
+        <p class="underline text-center">New Category</p>
 
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+        <%= form.label :name, "Name:" %>
+        <%= form.text_field :name, class: 'bg-transparent border-t-0 border-x-0 border-dotted border-b-4 border-black' %>
 
-    <%= form.submit "create cat"%>
-<% end %>
+        <%= form.label :description, "Description:" %>
+        <%= form.text_field :description, class: 'bg-transparent border-t-0 border-x-0 border-dotted border-b-4 border-black' %>
 
-<%= link_to "back to all cats", categories_path%>
+        <%= form.submit "Post It!", class: 'mt-4 cursor-pointer'%>
+    <% end %>
+</div>
+</main>

@@ -1,12 +1,6 @@
 <main class="relative font-hand flex flex-wrap justify-evenly items-start gap-4 p-4 ">
 
-        <% if flash[:notice] %>
-        <ul class="notices">
-            <p class="success-message"><%= flash[:notice] %></p>
-        </ul>
-        <% end %>
-
-        <ul class="categories cork | grow w-[min(650px,90%)] flex flex-wrap justify-center content-center items-start pb-24" id="stickycat">
+        <ul class="categories cork | grow w-[min(650px,90%)] flex flex-wrap justify-center content-center items-start pb-24" id="stickycategories">
             <% @categories.each do |category| %>
             <li class="sticky | flex flex-col" style="transform: rotate(<%= rand(-4..4)%>deg);" onmouseover="this.style.transform='rotate(0deg) translateY(-16%)';" onmouseout="this.style.transform='rotate(<%= rand(-4..4)%>deg)'">
                 <%= link_to category.name, category_show_path(category.id), class: 'title capitalize' %>
