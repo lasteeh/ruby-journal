@@ -1,15 +1,76 @@
-    <div class="">
-        <p>all tasks test</p>
+    <main class="new-task | flex flex-wrap justify-evenly items-start gap-8 p-8">
 
-        <% if flash[:notice] %>
-            <p><%= flash[:notice] %></p>
-        <% end %>
+        <div class="grow grid grid-cols-[auto_80px] isolate">
+            <div class="paper | font-hand grid grid-cols-[repeat(auto-fit,minmax(270px,1fr))] gap-[18px] z-[2] shadow-md" id="papertasks">
+                <% @categories.each do |category| %>
+                <% if category.tasks.any? %>
+                    <ul class="p-4"  data-category="<%= category.id %>">
+                        <p class="underline"><%= category.name %></p>
 
-        <ul>
-            <% @tasks.each do |task| %>
-            <li><%= link_to task.description, task_show_path(task.id) %></li>
-            <% end %>
-        </ul>
+                        <% category.tasks.each do |task| %>
+                            <li class="text-2xl grid grid-cols-[auto_1fr_auto] items-center">
+                              <% if task.completed %>
+                              <%= button_to "\u{1F5F9}", task_complete_path(task.id), class: 'text-2xl mr-2', method: :put %>
+                              <% else %>
+                              <%= button_to "\u{2610}", task_complete_path(task.id), class: 'text-2xl mr-2', method: :put %>
+                              <% end %>
+                              <%= link_to task.description, task_show_path(task.id) %>
+                              <% if task.deadline %>
+                                  <span class="px-2 text-xl underline"><%= task.deadline.strftime("%b %e#{',' if task.deadline.year.present?} %Y") %>
+                              <% end %>
+                            </li>
+                        <% end %>
 
-        <%= link_to "new task", tasks_new_path %>
-    </div>
+                    </ul>
+                <% end %>
+                <% end %>
+            </div>
+            <div class="flex flex-col flex-wrap justify-start items-stretch my-4 font-sans text-white isolate z-[1]" id="paperlinks">
+                    <%= link_to "All", "#", data: { category: "all" }, title: "All Tasks", class: "bookmark | max-h-[8ch] overflow-ellipsis whitespace-nowrap overflow-hidden p-2 w-full bg-[rgb(15,84,139)]" %>
+                <% @categories.each do |category| %>
+                <% colors = [
+                    "#FFC107",
+                    "#8BC34A",
+                    "#2196F3",
+                    "#9C27B0",
+                    "#FF5722",
+                    "#FF4136",
+                ] %>
+                    <%= link_to category.name, '#', data: { category: category.id }, title: category.name, class: "bookmark | max-h-[8ch] overflow-ellipsis whitespace-nowrap overflow-hidden p-2 w-full bg-[#{colors[rand(0..5)]}]" %>
+                <% end %>
+                    <%= link_to "New Category", categories_path, class: "bookmark | max-h-[8ch] overflow-ellipsis whitespace-nowrap overflow-hidden p-2 w-full bg-[rgb(184,0,0)]" %>
+            </div>
+        </div>
+
+        <div id="paperform" class="shadow-md flex items-stretch w-[min(500px,90%)]">
+            <%= render partial: 'tasks/paperform', locals: {task: Task.new} %>
+        </div>
+    </main>
+
+    <script defer>
+  document.addEventListener("DOMContentLoaded", function() {
+    const categoryLinks = document.querySelectorAll("#paperlinks [data-category]");
+
+    categoryLinks.forEach(function(link) {
+      link.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        categoryLinks.forEach(function(link) {
+          link.classList.remove("active");
+        });
+        this.classList.add("active");
+
+        const categoryId = this.dataset.category;
+        const taskLists = document.querySelectorAll("#papertasks [data-category]");
+
+        taskLists.forEach(function(list) {
+          if (categoryId == "all" || list.dataset.category == categoryId) {
+            list.style.display = "block";
+          } else {
+            list.style.display = "none";
+          }
+        });
+      });
+    });
+  });
+</script>

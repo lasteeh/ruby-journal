@@ -1,12 +1,46 @@
-<p><%= @task.id %></p>
-<p><%= @task.description %></p>
-<p><%= @task.deadline %></p>
 
-<% if @task.completed %>
-<p>completed</p>
-<% end %>
 
-<%= link_to "back to tasks", tasks_path %>
-<%= link_to "edit task", task_edit_path %>
-<%= button_to "delete task", task_delete_path, method: :delete%>
-<%= button_to 'complete task', task_complete_path, method: :put %>
+
+
+<main class="font-hand flex flex-wrap justify-evenly items-start gap-8 p-8">
+    <div class="flex flex-col items-stretch w-[min(350px,90%)] gap-8">
+        <div class="paper | grid grid-cols-1 grid-row-[auto_repeat(4,1fr)] items-stretch  p-4">
+            <p class="font-sans text-2xl uppercase bg-black/10 border-y-2 border-black/60 text-center opacity-75">task</p>
+            <p>
+                <span class="font-sans text-sm uppercase opacity-75">deadline: </span>
+                <% if @task.deadline %>
+                    <span class="px-2 text-2xl underline"><%= @task.deadline.strftime("%b %e#{',' if @task.deadline.year.present?} %Y") %>
+                <% end %>
+            </span></p>
+            <p class="text-center <%= @task.completed ? 'line-through' : '' %> my-8"><%= @task.description %></p>
+            <div class="flex justify-start items-center gap-2">
+                <span class="font-sans text-sm uppercase opacity-75">completed?:</span>
+                <% if @task.completed %>
+                <%= button_to "\u{1F5F9}", task_complete_path, class: 'text-2xl', method: :put %>
+                <% else %>
+                <%= button_to "\u{2610}", task_complete_path, class: 'text-2xl', method: :put %>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-4 justify-start items-center">
+            <%= link_to "all tasks", tasks_path,class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'"  %>
+            <%= link_to "edit task", task_edit_path,class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'"  %>
+            <%= button_to "delete task", task_delete_path,form: { class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" } , method: :delete%>
+        </div>
+    </div>
+
+    <div class="categories cork |  grow w-[min(650px,90%)] flex flex-col justify-start items-center gap-8 pb-24" id="stickycategories">
+        <p class="paper capitalize rotate-3 shadow-md">categories</p>
+        <% if @task.categories.any? %>
+            <ul class="flex flex-wrap justify-center items-start">
+                <% @task.categories.each do |category| %>
+                    <li class="sticky-note | flex flex-col" style="transform: rotate(<%= rand(-4..4)%>deg);" onmouseover="this.style.transform='rotate(0deg) translateY(-16%)';" onmouseout="this.style.transform='rotate(<%= rand(-4..4)%>deg)'">
+                        <%= link_to category.name, category_show_path(category.id), class: 'title capitalize' %>
+                        <span class="text-2xl"><%= category.description%></span>
+                    </li>
+                <% end %>
+            </ul>
+        <% end %>
+    </div>
+</main>

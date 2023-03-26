@@ -1,6 +1,4 @@
-
-
-<% if @task.errors.any? %>
+<% if @task && @task.errors.any? %>
 <ul class="notices">
     <% @task.errors.full_messages.each do |message| %>
         <p class="error-message"><%= message %></p>
@@ -9,9 +7,7 @@
 <% end %>
 
 
-<main class="new-task | flex flex-col items-center p-8">
-
-<%= form_with scope: :task, url: task_update_path, class: "paper | grid grid-cols-1 grid-row-[auto_repeat(4,1fr)] items-stretch gap-[18px] p-4 w-[min(500px,90%)]", method: :patch do |form| %>
+<%= form_with model: @task, scope: :task,  class: "paper | grow grid grid-cols-1 grid-row-[auto_repeat(4,1fr)] items-stretch gap-[18px] p-4 w-[min(500px,90%)]" do |form| %>
     <p class="uppercase text-xl bg-neutral-300 text-center border-y-2 border-black/40 opacity-90">Create a task</p>
 
 <div class="bg-neutral-500/10 p-1 border-y-2 border-black/40 grid grid-cols-[min-content_auto]">
@@ -38,11 +34,3 @@
 
     <%= form.submit "\u{1F5F9} submit", class: 'text-4xl font-hand cursor-pointer' %>
 <% end %>
-
-<%= link_to "<i class='fa-solid fa-pencil'></i> go back to task".html_safe, task_show_path(@task.id), class: "font-hand text-4xl my-4" %>
-<%= link_to "<i class='fa-solid fa-clipboard-list text-yellow-400'></i> see all tasks".html_safe, tasks_path, class: "font-hand text-4xl my-4" %>
-
-</main>
-
-
-

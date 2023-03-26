@@ -2,6 +2,7 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy, :complete]
 
     def index
+        @categories = current_user.categories
         @tasks = current_user.tasks
     end
 
@@ -16,16 +17,25 @@ class TasksController < ApplicationController
         @task = current_user.tasks.build(task_params)
 
         if @task.save
-            # binding.break
-            task_category_params[:category_ids].each do |category_id|
-                if category_id != ""
-                    @task_category = TaskCategory.new(task_id: @task.id, category_id: category_id)
-                    @task_category.save
+            if task_category_params[:category_ids]
+                task_category_params[:category_ids].each do |category_id|
+                    if category_id != ""
+                        @task_category = TaskCategory.new(task_id: @task.id, category_id: category_id)
+                        @task_category.save
+                    end
                 end
             end
             redirect_to tasks_path, notice: 'task created'
         else
-            render :new, notice: 'failed', status: :unprocessable_entity
+            
+            respond_to do |format|
+                format.html {render :new, flash:{error:'inval'}, status: :unprocessable_entity}
+                format.turbo_stream do
+                    flash.now[:error] = @task.errors.full_messages
+                    render turbo_stream:
+                    turbo_stream.update('paperform', partial: "tasks/paperform", locals: {task: @task})
+                end
+            end
         end
     end
 
@@ -49,7 +59,7 @@ class TasksController < ApplicationController
     def complete
         @task.toggle(:completed)
         @task.save
-        redirect_to task_show_path, notice: 'task completed'
+        redirect_to request.referrer, notice: 'task completed'
     end
 
     private

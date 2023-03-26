@@ -135,3 +135,52 @@
   font-size: 1rem;
   line-height: normal;
 }
+
+.new-task :where(label, input, textarea, select) {
+  background-color: transparent !important;
+  border: 0;
+  /* border-bottom: 3px solid black; */
+}
+
+.new-task :where(input:not([type="submit"]), select, textarea) {
+  /* border-bottom: 3px solid black !important; */
+  font-family: "Reenie Beanie", "cursive";
+  font-size: 2rem !important;
+}
+
+.new-task label {
+  opacity: 0.75;
+}
+
+.select2.select2-container.select2-container--default
+  *
+  :not(.select2-selection__choice) {
+  background-color: transparent !important;
+  border: 0 !important;
+  font-family: "Reenie Beanie", "cursive";
+  font-size: 2rem !important;
+}
+/* .select2.select2-container.select2-container--default {
+  border-bottom: 3px solid black;
+} */
+
+.select2-selection__choice {
+  background-color: hsla(64, 100%, 50%, 0.1) !important;
+  cursor: pointer !important;
+}
+
+.bookmark {
+  margin-block-end: -8%;
+  z-index: 1;
+  box-shadow: 0px 2px 5px 1px hsl(0, 0%, 0%, 0.25);
+  transition: all 250ms ease-in-out;
+}
+.bookmark:hover {
+  scale: 1.05;
+  z-index: 2;
+}
+
+.bookmark.active {
+  scale: 1.05;
+  z-index: 2;
+}
