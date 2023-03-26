@@ -1,16 +1,21 @@
 <main class="relative font-hand flex flex-wrap justify-center items-center gap-12 p-4 ">
-<% if @category.errors.any? %>
-    <% @category.errors.full_messages.each do |message| %>
-        <p><%= message %></p>
-    <% end %>
-<% end %>
+
+        <% if @category && @category.errors.any? %>
+            <ul class="notices">
+                <% @category.errors.full_messages.each do |message| %>
+                    <li class="error-message"><%= message %></li>
+                <% end %>
+            </ul>
+        <% end %>
 
 <div class="paper | shadow-md origin-center" style="transform: rotate(<%= rand(-3..3)%>deg)" onmouseover="this.style.transform='rotate(<%= rand(-3..3)%>deg) translateY(-16%)';" onmouseout="this.style.transform='rotate(<%= rand(-3..3)%>deg)'">
-    <%= link_to raw("<span>&#8592;</span> back to all cats"), categories_path%>
+    <%= link_to raw("<span>&#8592;</span> back to all categories"), categories_path%>
 </div>
 
-<div class="sticky | w-[min(400px,90%)]" style="transform: rotate(<%= rand(-3..3)%>deg)" id="stickyform">
-    <%= form_with model: @category, class: 'flex flex-col' do |form| %>
+<div class="sticky-note | w-[min(400px,90%)]" style="transform: rotate(<%= rand(-3..3)%>deg)" id="stickyform">
+    <%= form_for @category, html:{ class: 'flex flex-col'} do |form| %>
+
+
         <p class="underline text-center">New Category</p>
 
         <%= form.label :name, "Name:" %>

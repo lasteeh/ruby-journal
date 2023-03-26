@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get '/categories/:id', to: 'categories#show', as: :category_show
     get '/categories/:id/edit', to: 'categories#edit', as: :category_edit
     patch '/categories/:id', to: 'categories#update', as: :category_update
+    put '/categories/:id', to: 'categories#favorite', as: :category_favorite
     delete '/categories/:id', to: 'categories#destroy', as: :category_delete
 
     get '/tasks', to: 'tasks#index'

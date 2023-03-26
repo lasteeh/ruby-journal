@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Reenie+Beanie&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <script src="https://kit.fontawesome.com/5569f7f53c.js" crossorigin="anonymous"></script>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -37,8 +38,8 @@
           </div>
       </div>
       <div class="label-links">
-        <%= link_to 'categories', categories_path, class: ("#{current_page?(categories_path) ? 'current' : ''} bg-[#0F548B]") %>
-        <%= link_to 'tasks', tasks_path, class: ("#{current_page?(tasks_path) ? 'current' : ''} bg-[#14A8FF]") %>
+        <%= link_to 'categories', categories_path, class: ("#{request.path.include?('categories') ? 'current' : ''} bg-[#0F548B]") %>
+        <%= link_to 'tasks', tasks_path, class: ("#{request.path.include?('tasks') ? 'current' : ''} bg-[#14A8FF]") %>
       </div>
     </header>
     <% end %>

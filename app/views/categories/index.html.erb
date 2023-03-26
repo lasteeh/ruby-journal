@@ -13,10 +13,4 @@
             <%= render partial: 'categories/stickyform', locals: {category: Category.new} %>
         </div>
 
-        <% if flash[:notice] %>
-            <div class="notices">
-                <p class="success-message"><%= flash[:notice] %></p>
-            </div>
-        <% end %>
-
 </main>

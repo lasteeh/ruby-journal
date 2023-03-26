@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-    before_action :set_category, only: [:show, :edit, :update, :destroy]
+    before_action :set_category, only: [:show, :edit, :update, :destroy, :favorite]
 
     def index
         @categories = current_user.categories
@@ -25,8 +25,9 @@ class CategoriesController < ApplicationController
             else
                 # binding.break
                 respond_to do |format|
-                    format.html {render :new, notice: 'error', status: :unprocessable_entity}
+                    format.html {render :new, flash:{error:'inval'}, status: :unprocessable_entity}
                     format.turbo_stream do
+                        flash.now[:error] = @category.errors.full_messages
                         render turbo_stream:
                         turbo_stream.update('stickyform', partial: "categories/stickyform", locals: {category: @category})
                     end
@@ -36,6 +37,8 @@ class CategoriesController < ApplicationController
     end
 
     def show
+        # binding.break
+        @tasks = @category.tasks.order(completed: :asc, deadline: :asc)
     end
 
     def edit
@@ -51,13 +54,20 @@ class CategoriesController < ApplicationController
 
     def destroy
         @category.destroy
-        redirect_to categories_path, notice: 'cat destroyed'
+        redirect_to categories_path, flash: {error: 'cat destroyed'}
+    end
+
+    def favorite
+        @category.toggle(:favorite)
+        @category.save
+        redirect_to category_show_path, notice: 'added to favorite'
     end
 
     private
 
     def set_category
         @category = current_user.categories.find(params[:id])
+        # @category = current_user.categories.find_by(name: params[:name])
     end
 
     def category_params

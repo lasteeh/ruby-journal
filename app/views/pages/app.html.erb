@@ -3,19 +3,21 @@
     <section class="grow w-[min(350px,90%)] grid grid-cols-1 grid-rows-[auto_1fr] gap-4">
       <p class="paper | block text-5xl text-center">Priorities</p>
       <div class="paper | min-h-[500px] bg-white rounded-lg ">
-        <ul>
-          <li>sample</li>
-          <li>sample</li>
-          <li>sample</li>
-          <li>sample</li>
-          <li>sample</li>
-          <li>sample</li>
-          <li>sample</li>
-          <li>sample</li>
-          <li>sample</li>
-          <li>sample</li>
-          <li>sample</li>
+            <div class="grid grid-cols-2 place-items-center text-2xl underline">
+            <span>task</span>
+            <span>deadline</span>
+        </div>
+        <% @tasks.each do |task| %>
+        <ul class="">
+            <li class="grid grid-cols-[auto_1fr_1fr] gap-4 ml-2">
+                <span>&#8226;</span>
+                <%= link_to task.description, task_show_path(task.id), class: "#{task.completed ? 'line-through' : ''}"%>
+                <% if task.deadline && !task.completed %>
+                    <span class="text-xl  text-center mr-2"><%= task.deadline.strftime("%b %e#{',' if task.deadline.year.present?} %Y") %></span>
+                <% end %>
+            </li>
         </ul>
+        <% end %>
       </div>
     </section>
     <section class="cork | flex flex-wrap justify-center items-center gap-8 grow-[2]">

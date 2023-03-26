@@ -1,3 +1,4 @@
+
         <% if @category && @category.errors.any? %>
             <ul class="notices">
                 <% @category.errors.full_messages.each do |message| %>
@@ -5,6 +6,7 @@
                 <% end %>
             </ul>
         <% end %>
+
 
 <%= form_with scope: :category, url: categories_path, class: 'flex flex-col items-stretch' do |form| %>
     <p class="underline text-center">New Category</p>
