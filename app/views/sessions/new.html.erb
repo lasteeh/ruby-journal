@@ -28,5 +28,11 @@
         </ul>
     <% end %>
 
+        <% if flash[:notice] %>
+    <div class="notices">
+        <p class="success-message"><%= flash[:notice] %></p>
+    </div>
+    <% end %>
+
 <% end %>
 

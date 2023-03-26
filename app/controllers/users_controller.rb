@@ -10,17 +10,22 @@ class UsersController < ApplicationController
     end
 
     def create
-        debugger
-        if signup_params[:password] == signup_params[:password_confirmation]
+        # debugger
+        @user = User.new(user_params)
+        if signup_params[:password].blank? || signup_params[:password].length < 8
+            @user = User.create(user_params)
+            render :new, status: :unprocessable_entity
+        elsif signup_params[:password] != signup_params[:password_confirmation]
+            @user.errors.add(:password_confirmation, 'doesnt match with Password')
+            render :new, status: :unprocessable_entity
+        else
             @user = User.signup(user_params)
 
             if @user.save
-                redirect_to login_path
+                redirect_to login_path, notice: 'Account successfully created'
             else
                 render :new, status: :unprocessable_entity
             end
-        else
-            render :new, notice: 'password fail', status: :unprocessable_entity
         end
     end
 
@@ -47,7 +52,7 @@ class UsersController < ApplicationController
     end
 
     def signup_params
-        params.permit(:username, :email, :password, :password_confirmation)
+        params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
 
     def set_profile

@@ -12,21 +12,27 @@ class CategoriesController < ApplicationController
     def create
         @category = current_user.categories.build(category_params)
 
-        respond_to do |format|
+        
             if @category.save
-                format.html {redirect_to categories_path, notice: 'cat created'}
-                format.turbo_stream do
-                    render turbo_stream:
-                    turbo_stream.append('stickycategories', partial: "categories/stickycategories", locals: {category: @category})
-                end
+                redirect_to categories_path, notice: 'Category successfully created'
+                # format.html {redirect_to categories_path, notice: 'cat created'}
+                # format.turbo_stream do
+                #     render turbo_stream: [
+                #     turbo_stream.append('stickycategories', partial: "categories/stickycategories", locals: {category: @category}),
+                #     turbo_stream.update('stickyform', partial: "categories/stickyform", locals: {category: @category})
+                #     ]
+                # end
             else
-                format.html {render :new, notice: 'error', status: :unprocessable_entity}
-                format.turbo_stream do
-                    render turbo_stream:
-                    turbo_stream.update('stickyform', partial: "categories/stickyform", locals: {category: @category})
+                # binding.break
+                respond_to do |format|
+                    format.html {render :new, notice: 'error', status: :unprocessable_entity}
+                    format.turbo_stream do
+                        render turbo_stream:
+                        turbo_stream.update('stickyform', partial: "categories/stickyform", locals: {category: @category})
+                    end
                 end
             end
-        end
+       
     end
 
     def show

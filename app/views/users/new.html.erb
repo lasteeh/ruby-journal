@@ -39,5 +39,10 @@
         </ul>
     <% end %>
 
+    <% if flash[:notice] %>
+    <div class="notices">
+        <p class="error-message"><%= flash[:notice] %></p>
+    </div>
+    <% end %>
 <% end %>
 

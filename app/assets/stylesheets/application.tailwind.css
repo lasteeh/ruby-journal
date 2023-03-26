@@ -18,7 +18,7 @@
   }
 
   .notices {
-    @apply absolute top-0 right-0 flex flex-col gap-1 justify-start items-end text-white p-4 pointer-events-none z-[500];
+    @apply font-sans absolute top-0 right-0 flex flex-col gap-1 justify-start items-end text-white p-4 pointer-events-none z-[500];
   }
 
   .error-message {
@@ -43,7 +43,7 @@
   }
 
   .notice-message {
-    @apply px-2 py-1 rounded-md drop-shadow-md fade;
+    @apply px-2 py-1 rounded-md drop-shadow-md fade font-sans;
   }
 
   .fade {

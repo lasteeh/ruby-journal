@@ -95,7 +95,7 @@
   );
 }
 
-.categories.cork .sticky {
+.categories.cork .sticky-note {
   margin-block-end: -6%;
 }
 
@@ -110,7 +110,8 @@
   box-shadow: -3px 3px 0px 0px hsl(0, 0%, 0%, 0.75);
 }
 
-.sticky {
+.sticky-note {
+  position: static;
   background-color: hsl(60, 80%, 70%);
   padding: 1rem;
   width: min(250px, 90%);
@@ -121,7 +122,7 @@
   transition: all 250ms ease-in-out;
 }
 
-.sticky > .title {
+.sticky-note > .title {
   text-decoration: underline;
 }
 
