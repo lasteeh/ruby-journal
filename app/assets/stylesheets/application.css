@@ -129,3 +129,9 @@
 .field_with_errors > * {
   width: 100%;
 }
+
+.success-message,
+.error-message {
+  font-size: 1rem;
+  line-height: normal;
+}

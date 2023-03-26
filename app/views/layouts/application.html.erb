@@ -13,6 +13,7 @@
   </head>
 
   <body class="relative grid grid-cols-1 grid-rows-[min-content_1fr] min-h-[100vh] min-w-[320px] bg-neutral-200 isolate">
+   <%= render partial: 'components/messages' %>
     <% if request.path.include?('/app') %>
     <header class="">
       <div class="relative flex flex-wrap justify-end items-center z-[100] py-2 px-4 bg-primary-400 text-white isolate">
