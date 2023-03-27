@@ -1,11 +1,11 @@
 <main class="relative font-hand flex flex-wrap justify-evenly items-start gap-4 p-4 ">
 
         <div class="cork | grow w-[min(650px,90%)]  pb-24 isolate">
-                <p class="paper | shadow-md text-center mx-auto text-4xl w-max z-[2] mb-16">aLL Categories</p>
+                <p class="paper | shadow-md text-center mx-auto text-4xl w-max z-[1] mb-24">aLL Categories</p>
 
-            <ul class="categories  |  flex flex-wrap justify-center content-center items-start z-[1]" id="stickycategories">
+            <ul class="categories  |  flex flex-wrap justify-center content-center items-start z-[2]" id="stickycategories">
             <% @categories.each do |category| %>
-            <li class="sticky-note | flex flex-col" style="transform: rotate(<%= rand(-4..4)%>deg);" onmouseover="this.style.transform='rotate(0deg) translateY(-16%)';" onmouseout="this.style.transform='rotate(<%= rand(-4..4)%>deg)'">
+            <li class="sticky-note | flex flex-col min-h-[150px] max-h-[160px] mt-[-6%] overflow-auto" style="transform: rotate(<%= rand(-4..4)%>deg);" onmouseover="this.style.transform='rotate(0deg) translateY(-16%)';" onmouseout="this.style.transform='rotate(<%= rand(-4..4)%>deg)'">
                 <%= link_to category.name, category_show_path(category.id), class: 'title capitalize' %>
                 <span class="text-2xl"><%= category.description%></span>
             </li>
