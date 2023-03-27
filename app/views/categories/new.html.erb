@@ -9,9 +9,9 @@
         <% end %>
 
 <div class="flex flex-col items-end gap-8" >
-    <%= link_to raw("<span>&#8592;</span> back to all categories"), categories_path , class: "paper | shadow-md origin-center", style: "transform: rotate(#{rand(-3..3)}deg)", onmouseover: "this.style.transform='rotate(#{rand(-3..3)}deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-3..3)}deg)'"%>
-    <%= link_to "view aLL tasKS", tasks_path , class: "paper | shadow-md origin-center", style: "transform: rotate(#{rand(-3..3)}deg)", onmouseover: "this.style.transform='rotate(#{rand(-3..3)}deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-3..3)}deg)'"%>
-    <%= link_to "cReate nEW tsk", tasks_new_path , class: "paper | shadow-md origin-center", style: "transform: rotate(#{rand(-3..3)}deg)", onmouseover: "this.style.transform='rotate(#{rand(-3..3)}deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-3..3)}deg)'"%>
+    <%= link_to raw("<span>&#8592;</span> back to all categories"), categories_path , class: "paper | shadow-md origin-center text-2xl", style: "transform: rotate(#{rand(-3..3)}deg)", onmouseover: "this.style.transform='rotate(#{rand(-3..3)}deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-3..3)}deg)'"%>
+    <%= link_to "view aLL tasKS", tasks_path , class: "paper | shadow-md origin-center text-2xl", style: "transform: rotate(#{rand(-3..3)}deg)", onmouseover: "this.style.transform='rotate(#{rand(-3..3)}deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-3..3)}deg)'"%>
+    <%= link_to "cReate nEW tsk", tasks_new_path , class: "paper | shadow-md origin-center text-2xl", style: "transform: rotate(#{rand(-3..3)}deg)", onmouseover: "this.style.transform='rotate(#{rand(-3..3)}deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-3..3)}deg)'"%>
 </div>
 
 <div class="sticky-note | w-[min(400px,90%)]" style="transform: rotate(<%= rand(-3..3)%>deg)" id="stickyform">
