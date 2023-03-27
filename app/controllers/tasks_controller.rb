@@ -45,12 +45,20 @@ class TasksController < ApplicationController
 
     def update
         if @task.update(task_params)
-            redirect_to tasks_path, notice: 'task updated'
+          if task_category_params[:category_ids]
+            @task.task_categories.destroy_all
+            task_category_params[:category_ids].each do |category_id|
+              if category_id.present?
+                @task_category = TaskCategory.new(task_id: @task.id, category_id: category_id)
+                @task_category.save
+              end
+            end
+          end
+          redirect_to tasks_path, notice: 'Task updated successfully'
         else
-            render :edit, notice: 'fail', status: :unprocessable_entity
+          render :edit
         end
-        
-    end
+      end
     
     def destroy
         @task.destroy
