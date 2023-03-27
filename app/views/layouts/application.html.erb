@@ -19,7 +19,7 @@
 
   <body class="relative grid grid-cols-1 grid-rows-[min-content_1fr] min-h-[100vh] min-w-[320px] bg-neutral-200 isolate">
    <%= render partial: 'components/messages' %>
-    <% if request.path.include?('/app') %>
+    <% if request.path.include?('/app') || request.path.include?('/profile') %>
     <header class="">
       <div class="relative flex flex-wrap justify-end items-center z-[100] py-2 px-4 bg-primary-400 text-white isolate">
           <%= link_to 'JApp', root_path, class: 'text-2xl'%>
@@ -42,6 +42,7 @@
           </div>
       </div>
       <div class="label-links">
+        <%= link_to 'home', app_path, class: ("#{current_page?(app_path) ? 'current' : ''} bg-[hsl(350,100%,68%)]") %>
         <%= link_to 'categories', categories_path, class: ("#{request.path.include?('categories') ? 'current' : ''} bg-[#0F548B]") %>
         <%= link_to 'tasks', tasks_path, class: ("#{request.path.include?('tasks') ? 'current' : ''} bg-[#14A8FF]") %>
       </div>

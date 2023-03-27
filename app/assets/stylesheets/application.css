@@ -59,7 +59,7 @@
   text-transform: uppercase;
   letter-spacing: 0.25ch;
   transition: transform 250ms ease-in-out;
-  z-index: -1;
+  z-index: 1;
 }
 .label-links > *:hover {
   z-index: 3;
