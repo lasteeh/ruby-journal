@@ -1,26 +1,50 @@
-<p>new task test</p>
-
 <% if @task.errors.any? %>
+<ul class="notices">
     <% @task.errors.full_messages.each do |message| %>
-        <p><%= message %></p>
+        <p class="error-message"><%= message %></p>
     <% end %>
+</ul>
 <% end %>
 
-<% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-<% end %>
 
-<%= form_with model: @task do |form| %>
-    <%= form.label :description %>
+<main class="new-task | flex flex-col items-center">
+
+<div class="flex flex-col items-center p-8" id="paperform">
+
+<%= form_with model: @task, scope: :task, class: "paper | grid grid-cols-1 grid-row-[auto_repeat(4,1fr)] items-stretch gap-[18px] p-4 w-[min(500px,90%)]" do |form| %>
+    <p class="uppercase text-xl bg-neutral-300 text-center border-y-2 border-black/40 opacity-90">Create a task</p>
+
+<div class="bg-neutral-500/10 p-1 border-y-2 border-black/40 grid grid-cols-[min-content_auto]">
+    <%= form.label :description, "description:", class: 'text-md uppercase' %>
     <%= form.text_field :description %>
+</div>
 
-    <%= form.label :deadline %>
-    <%= form.date_select :deadline, include_blank: true, order: [:month, :day, :year], use_short_month: true %>
+<div class="bg-neutral-500/10 p-1 border-y-2 border-black/40 grid grid-cols-[min-content_auto_auto_auto] items-stretch gap-4">
+    <%= form.label :deadline, "Deadline:", class: 'text-md uppercase' %>
+    <%= form.date_select :deadline, include_blank: true, order: [:month, :day, :year], use_short_month: true, start_year: Date.today.year %>
+</div>
 
-    <%= form.label :category_ids %>
-    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+<div class="bg-neutral-500/10 p-1 border-y-2 border-black/40 grid grid-cols-[min-content_auto]">
+<%= form.label :category_ids, "Category:", class: 'text-md uppercase' %>
+<%= form.select :category_ids, Category.all.collect {|c| [c.name, c.id]}, {include_hidden: false}, {multiple: true, class: 'js-example-basic-multiple'} %>
+</div>
 
-    <%= form.submit "create task" %>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('.js-example-basic-multiple').select2();
+  });
+</script>
+
+
+    <%= form.submit "\u{1F5F9} submit", class: 'text-4xl font-hand cursor-pointer' %>
 <% end %>
 
-<%= link_to "back to all tasks", tasks_path%>
+
+</div>
+<%= link_to "<i class='fa-solid fa-clipboard-list text-yellow-400'></i> back to all tasks".html_safe, tasks_path, class: "font-hand text-4xl my-4" %>
+<%= link_to "<i class='fa-solid fa-layer-group text-yellow-400'></i> view all categories".html_safe, categories_path, class: "font-hand text-4xl my-4" %>
+<%= link_to "<i class='fa-solid fa-note-sticky text-yellow-400'></i> create new category".html_safe, categories_new_path, class: "font-hand text-4xl my-4" %>
+</main>
+
+
+

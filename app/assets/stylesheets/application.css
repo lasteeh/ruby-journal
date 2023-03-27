@@ -59,7 +59,7 @@
   text-transform: uppercase;
   letter-spacing: 0.25ch;
   transition: transform 250ms ease-in-out;
-  z-index: -1;
+  z-index: 1;
 }
 .label-links > *:hover {
   z-index: 3;
@@ -95,7 +95,7 @@
   );
 }
 
-.categories.cork .sticky {
+.categories.cork .sticky-note {
   margin-block-end: -6%;
 }
 
@@ -110,7 +110,8 @@
   box-shadow: -3px 3px 0px 0px hsl(0, 0%, 0%, 0.75);
 }
 
-.sticky {
+.sticky-note {
+  position: static;
   background-color: hsl(60, 80%, 70%);
   padding: 1rem;
   width: min(250px, 90%);
@@ -121,6 +122,82 @@
   transition: all 250ms ease-in-out;
 }
 
-.sticky > .title {
+.sticky-note > .title {
   text-decoration: underline;
+}
+
+.field_with_errors > * {
+  width: 100%;
+}
+
+.success-message,
+.error-message {
+  font-size: 1rem;
+  line-height: normal;
+}
+
+.new-task :where(label, input, textarea, select) {
+  background-color: transparent !important;
+  border: 0;
+  /* border-bottom: 3px solid black; */
+}
+
+.new-task :where(input:not([type="submit"]), select, textarea) {
+  /* border-bottom: 3px solid black !important; */
+  font-family: "Reenie Beanie", "cursive";
+  font-size: 2rem !important;
+}
+
+.new-task label {
+  opacity: 0.75;
+}
+
+.select2.select2-container.select2-container--default
+  *
+  :not(.select2-selection__choice) {
+  background-color: transparent !important;
+  border: 0 !important;
+  font-family: "Reenie Beanie", "cursive";
+  font-size: 2rem !important;
+}
+/* .select2.select2-container.select2-container--default {
+  border-bottom: 3px solid black;
+} */
+
+.select2-selection__choice {
+  background-color: hsla(64, 100%, 50%, 0.1) !important;
+  cursor: pointer !important;
+}
+
+.bookmark {
+  margin-block-end: -8%;
+  z-index: 1;
+  box-shadow: 0px 2px 5px 1px hsl(0, 0%, 0%, 0.25);
+  transition: all 250ms ease-in-out;
+}
+.bookmark:hover {
+  scale: 1.05;
+  z-index: 2;
+}
+
+.bookmark.active {
+  scale: 1.05;
+  z-index: 2;
+}
+
+.sticky-note {
+  scrollbar-width: thin;
+}
+
+.sticky-note::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sticky-note::-webkit-scrollbar-track {
+  background-color: hsl(64, 94%, 84%);
+}
+
+.sticky-note::-webkit-scrollbar-thumb {
+  background-color: hsl(58, 83%, 56%);
+  border-radius: 3px;
 }

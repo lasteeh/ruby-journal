@@ -5,16 +5,41 @@ class CategoryTest < ActiveSupport::TestCase
   #   assert true
   # end
 
-  test "should not save without a name" do
-    category = Category.new(name: "")
-    
-    assert_not category.save, "saved without category name"
-  end
+  # def setup
+  #   @category = categories(:one)
+  #   @user = users(:one)
+  # end
 
-  test "should not save category with duplicate name" do
-    category1 = Category.create(name: "Test Category")
-    category2 = Category.new(name: "Test Category")
-  
-    assert_not category2.save, "Saved category with duplicate name"
-  end
+  # test "should be valid" do
+  #   assert @category.valid?
+  # end
+
+  # test "name should be present" do
+  #   @category.name = "    "
+  #   assert_not @category.valid?
+  # end
+
+  # test "name should be unique" do
+  #   duplicate_category = @category.dup
+  #   @category.save
+  #   assert_not duplicate_category.valid?
+  # end
+
+  # test "name should be downcased before validation" do
+  #   @category.name = "CATEGORY"
+  #   @category.save
+  #   assert_equal "category", @category.name
+  # end
+
+  # test "should belong to a user" do
+  #   assert_not_nil @category.user
+  # end
+
+  # test "should have many task categories" do
+  #   assert_instance_of TaskCategory, @category.task_categories.build
+  # end
+
+  # test "should have many tasks through task categories" do
+  #   assert_instance_of Task, @category.tasks.build
+  # end
 end

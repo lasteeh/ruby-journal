@@ -1,21 +1,28 @@
 <main class="relative font-hand flex flex-wrap justify-evenly items-start gap-4 p-4 ">
 
-        <% if flash[:notice] %>
-        <ul class="notices">
-            <p class="success-message"><%= flash[:notice] %></p>
-        </ul>
-        <% end %>
+        <div class="cork | grow w-[min(650px,90%)]  pb-24 isolate">
+                <p class="paper | shadow-md text-center mx-auto w-max z-[2] mb-16">aLL Categories</p>
 
-        <ul class="categories cork | grow w-[min(650px,90%)] flex flex-wrap justify-center content-center items-start pb-24" id="stickycat">
+            <ul class="categories  |  flex flex-wrap justify-center content-center items-start z-[1]" id="stickycategories">
             <% @categories.each do |category| %>
-            <li class="sticky | flex flex-col" style="transform: rotate(<%= rand(-4..4)%>deg);" onmouseover="this.style.transform='rotate(0deg) translateY(-16%)';" onmouseout="this.style.transform='rotate(<%= rand(-4..4)%>deg)'">
+            <li class="sticky-note | flex flex-col" style="transform: rotate(<%= rand(-4..4)%>deg);" onmouseover="this.style.transform='rotate(0deg) translateY(-16%)';" onmouseout="this.style.transform='rotate(<%= rand(-4..4)%>deg)'">
                 <%= link_to category.name, category_show_path(category.id), class: 'title capitalize' %>
                 <span class="text-2xl"><%= category.description%></span>
             </li>
             <% end %>
-        </ul>
-
-        <div class="sticky | w-[min(400px,90%)]" style="transform: rotate(<%= rand(-3..3)%>deg)" id="stickyform">
-            <%= render partial: 'categories/stickyform', locals: {category: Category.new} %>
+            </ul>
         </div>
+
+        <div class=" w-[min(400px,90%)]">
+            <div class="sticky-note | w-full mb-4 " style="transform: rotate(<%= rand(-3..3)%>deg)" id="stickyform">
+                <%= render partial: 'categories/stickyform', locals: {category: Category.new} %>
+            </div>
+            <div class="flex flex-col justify-start items-start gap-4 col-start-3 row-start-2">
+                    <%= link_to "view all tasks", tasks_path, class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %>
+                    <%= link_to "new task", tasks_new_path, class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %>
+                    <!-- <%= link_to "view all categories", categories_path, class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %> -->
+                    <!-- <%= link_to "new category", categories_new_path, class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %> -->
+                    </div>
+        </div>
+
 </main>

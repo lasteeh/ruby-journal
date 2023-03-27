@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+/* @layer base {
   .font-hand {
     @apply text-4xl;
   }
-}
+} */
 
 @layer components {
   .hyper-link {
@@ -18,11 +18,11 @@
   }
 
   .notices {
-    @apply absolute top-0 right-0 flex flex-col gap-1 justify-start items-end text-white p-4 pointer-events-none z-[500];
+    @apply font-sans absolute top-0 right-0 flex flex-col gap-1 justify-start items-end text-white p-4 pointer-events-none z-[500];
   }
 
   .error-message {
-    @apply notice-message bg-red-700;
+    @apply notice-message bg-yellow-400;
   }
 
   .success-message {
@@ -43,7 +43,7 @@
   }
 
   .notice-message {
-    @apply px-2 py-1 rounded-md drop-shadow-md fade;
+    @apply px-2 py-1 rounded-md drop-shadow-md fade font-sans text-sm;
   }
 
   .fade {

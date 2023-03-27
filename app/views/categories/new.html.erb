@@ -1,23 +1,32 @@
-<p>new category test</p>
+<main class="relative font-hand flex flex-wrap justify-center items-center gap-12 p-4 ">
 
-<% if @category.errors.any? %>
-    <% @category.errors.full_messages.each do |message| %>
-        <p><%= message %></p>
+        <% if @category && @category.errors.any? %>
+            <ul class="notices">
+                <% @category.errors.full_messages.each do |message| %>
+                    <li class="error-message"><%= message %></li>
+                <% end %>
+            </ul>
+        <% end %>
+
+<div class="flex flex-col items-end gap-8" >
+    <%= link_to raw("<span>&#8592;</span> back to all categories"), categories_path , class: "paper | shadow-md origin-center", style: "transform: rotate(#{rand(-3..3)}deg)", onmouseover: "this.style.transform='rotate(#{rand(-3..3)}deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-3..3)}deg)'"%>
+    <%= link_to "view aLL tasKS", tasks_path , class: "paper | shadow-md origin-center", style: "transform: rotate(#{rand(-3..3)}deg)", onmouseover: "this.style.transform='rotate(#{rand(-3..3)}deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-3..3)}deg)'"%>
+    <%= link_to "cReate nEW tsk", tasks_new_path , class: "paper | shadow-md origin-center", style: "transform: rotate(#{rand(-3..3)}deg)", onmouseover: "this.style.transform='rotate(#{rand(-3..3)}deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-3..3)}deg)'"%>
+</div>
+
+<div class="sticky-note | w-[min(400px,90%)]" style="transform: rotate(<%= rand(-3..3)%>deg)" id="stickyform">
+    <%= form_for @category, html:{ class: 'flex flex-col'} do |form| %>
+
+
+        <p class="underline text-center">New Category</p>
+
+        <%= form.label :name, "Name:" %>
+        <%= form.text_field :name, class: 'bg-transparent border-t-0 border-x-0 border-dotted border-b-4 border-black' %>
+
+        <%= form.label :description, "Description:" %>
+        <%= form.text_field :description, class: 'bg-transparent border-t-0 border-x-0 border-dotted border-b-4 border-black' %>
+
+        <%= form.submit "Post It!", class: 'mt-4 cursor-pointer'%>
     <% end %>
-<% end %>
-
-<% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-<% end %>
-
-<%= form_with model: @category do |form| %>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-
-    <%= form.submit "create cat"%>
-<% end %>
-
-<%= link_to "back to all cats", categories_path%>
+</div>
+</main>
