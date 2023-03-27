@@ -27,7 +27,7 @@
                 <% @categories.each do |category| %>
                 <% if category.tasks.any? %>
                     <ul class="p-4"  data-category="<%= category.id %>">
-                        <p class=" p-2 my-4 rounded-md bg-neutral-400/30"><span class="font-sans text-sm uppercase align-top mr-2">Title: </span><span class="underline"><%= category.name %></span></p>
+                        <p class=" p-2 my-4 rounded-md bg-neutral-400/30"><span class="font-sans text-sm uppercase align-top mr-2">Title: </span><span class="underline text-4xl"><%= category.name %></span></p>
                           <p class="font-sans text-xs uppercase underline font-semibold text-right  mt-[-0.75rem] mr-4 opacity-80">due date: </p>
                         <% category.tasks.each do |task| %>
                             <li class="text-2xl grid grid-cols-[auto_1fr_auto] items-center">
@@ -36,7 +36,7 @@
                               <% else %>
                               <%= button_to "\u{2610}", task_complete_path(task.id), class: 'text-2xl mr-2', method: :put %>
                               <% end %>
-                              <%= link_to task.description, task_show_path(task.id) %>
+                              <%= link_to task.description, task_show_path(task.id), class: "text-2xl" %>
                               <% if task.deadline %>
                                   <span class="px-2 text-xl underline"><%= task.deadline.strftime("%b %e#{',' if task.deadline.year.present?} %Y") %>
                               <% end %>
@@ -58,7 +58,7 @@
                     "#FF5722",
                     "#FF4136",
                 ] %>
-                    <%= link_to category.name, '#', data: { category: category.id }, title: category.name, class: "bookmark | max-h-[8ch] overflow-ellipsis whitespace-nowrap overflow-hidden p-2 w-full bg-[#{colors[rand(0..5)]}]" %>
+                    <%= link_to category.name, '#', data: { category: category.id }, title: category.name, class: "bookmark | max-h-[8ch] overflow-ellipsis whitespace-nowrap overflow-hidden p-2 w-full", style: "background-color: #{colors[rand(0..5)]};" %>
                 <% end %>
                     <%= link_to "New Category", categories_path, class: "bookmark | max-h-[8ch] overflow-ellipsis whitespace-nowrap overflow-hidden p-2 w-full bg-[rgb(184,0,0)]" %>
             </div>

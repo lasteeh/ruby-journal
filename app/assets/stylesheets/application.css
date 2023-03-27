@@ -120,6 +120,21 @@
   box-shadow: 1px 1px 4px 2px hsl(0, 0%, 0%, 0.1);
   word-break: break-all;
   transition: all 250ms ease-in-out;
+  font-size: 2rem;
+}
+
+.sticky-note input,
+.sticky-note textarea {
+  font-size: 2rem;
+}
+.sticky-note input:focus,
+.sticke-note textarea:focus,
+.paper input:focus,
+.paper textarea:focus,
+.paper select:focus {
+  outline: none !important;
+  border-color: black !important;
+  box-shadow: none !important;
 }
 
 .sticky-note > .title {
