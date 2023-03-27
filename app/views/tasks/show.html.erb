@@ -23,10 +23,16 @@
             </div>
         </div>
 
+        <div class="flex justify-center items-center gap-4">
+        <div class="flex flex-col gap-4 justify-start items-center">
+            <%= link_to "view aLL categories", categories_path,class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'"  %>
+            <%= link_to "create New CateGory", categories_new_path,class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'"  %>
+        </div>
         <div class="flex flex-col gap-4 justify-start items-center">
             <%= link_to "all tasks", tasks_path,class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'"  %>
             <%= link_to "edit task", task_edit_path,class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'"  %>
             <%= button_to "delete task", task_delete_path,form: { class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" } , method: :delete%>
+        </div>
         </div>
     </div>
 

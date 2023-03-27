@@ -4,6 +4,7 @@ class TasksController < ApplicationController
     def index
         @categories = current_user.categories
         @tasks = current_user.tasks
+        @solo_tasks = Task.left_outer_joins(:task_categories).where(task_categories: { id: nil })
     end
 
     def show

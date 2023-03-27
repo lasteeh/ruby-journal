@@ -10,7 +10,11 @@
         <% @tasks.each do |task| %>
         <ul class="">
             <li class="grid grid-cols-[auto_1fr_1fr] gap-4 ml-2">
-                <span>&#8226;</span>
+                              <% if task.completed %>
+                              <%= button_to "\u{1F5F9}", task_complete_path(task.id), class: 'text-2xl mr-2', method: :put %>
+                              <% else %>
+                              <%= button_to "\u{2610}", task_complete_path(task.id), class: 'text-2xl mr-2', method: :put %>
+                              <% end %>
                 <%= link_to task.description, task_show_path(task.id), class: "#{task.completed ? 'line-through' : ''}"%>
                 <% if task.deadline && !task.completed %>
                     <span class="text-xl  text-center mr-2"><%= task.deadline.strftime("%b %e#{',' if task.deadline.year.present?} %Y") %></span>
@@ -20,33 +24,50 @@
         <% end %>
       </div>
     </section>
-    <section class="cork | flex flex-wrap justify-center items-center gap-8 grow-[2]">
-        <ul class="sticky-note list-disc" style="transform: rotate(<%= rand(-5..5)%>deg)" ><p class="title">CATE</p>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-        </ul>
+    <section class="cork | w-[min(800px,90%)] grid grid-cols-3 grid-rows-[auto_repeat(auto-fill,minmax(300px,1fr))] items-center gap-4 grow-[2] isolate">
+              <% colors_array = [
+                "text-blue-500",
+                "text-yellow-500",
+                "text-orange-500",
+                "text-red-500",
+                "text-green-500",
+                "text-indigo-500",
+                "text-violet-500",
+              ]%>
+              <p class=" col-span-3 text-center uppercase flex flex-wrap gap-6 justify-center origin-center z-[2]" >
+                <span class="paper | shadow-md rounded-none font-black <%= colors_array[rand(0..6)] %>" style="transform: rotate(<%= rand(-30..30)%>deg) scale(1.5)">f</span>
+                <span class="paper | shadow-md rounded-none font-black <%= colors_array[rand(0..6)] %>" style="transform: rotate(<%= rand(-30..30)%>deg) scale(1.5)">a</span>
+                <span class="paper | shadow-md rounded-none font-black <%= colors_array[rand(0..6)] %>" style="transform: rotate(<%= rand(-30..30)%>deg) scale(1.5)">v</span>
+                <span class="paper | shadow-md rounded-none font-black <%= colors_array[rand(0..6)] %>" style="transform: rotate(<%= rand(-30..30)%>deg) scale(1.5)">o</span>
+                <span class="paper | shadow-md rounded-none font-black <%= colors_array[rand(0..6)] %>" style="transform: rotate(<%= rand(-30..30)%>deg) scale(1.5)">r</span>
+                <span class="paper | shadow-md rounded-none font-black <%= colors_array[rand(0..6)] %>" style="transform: rotate(<%= rand(-30..30)%>deg) scale(1.5)">i</span>
+                <span class="paper | shadow-md rounded-none font-black <%= colors_array[rand(0..6)] %>" style="transform: rotate(<%= rand(-30..30)%>deg) scale(1.5)">t</span>
+                <span class="paper | shadow-md rounded-none font-black <%= colors_array[rand(0..6)] %>" style="transform: rotate(<%= rand(-30..30)%>deg) scale(1.5)">e</span>
+                <span class="paper | shadow-md rounded-none font-black <%= colors_array[rand(0..6)] %>" style="transform: rotate(<%= rand(-30..30)%>deg) scale(1.5)">s</span>
+              </p>
+              <% @categories.each do |category| %>
+                <% if category.favorite %>
+                    <ul class="sticky-note | max-h-[250px] overflow-auto list-disc p-4 z-[1]" style="transform: rotate(<%= rand(-5..5)%>deg)" >
+                        <a class="title uppercase" href="<%= category_show_path(category.id)%>">
+                          <%= category.name %>
+                        </a>
 
-        <ul class="sticky-note list-disc" style="transform: rotate(<%= rand(-5..5)%>deg)" ><p class="title">CATE</p>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-        </ul>
+                        <% category.tasks.each do |task| %>
+                            <li class="ml-6 text-2xl <%= task.completed ? 'line-through' : ''%>">
+                              <%= link_to task.description, task_show_path(task.id) %>
+                            </li>
+                        <% end %>
 
-        <ul class="sticky-note list-disc" style="transform: rotate(<%= rand(-5..5)%>deg)" ><p class="title">CATE</p>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-        </ul>
+                    </ul>
+                <% end %>
+                <% end %>
 
-        <ul class="sticky-note list-disc" style="transform: rotate(<%= rand(-5..5)%>deg)" ><p class="title">CATE</p>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-          <li class="ml-6">taskk</li>
-        </ul>
+                <div class="flex flex-col justify-start items-center gap-4 col-start-3 row-start-2">
+                  <%= link_to "view all tasks", tasks_path, class: 'paper | shadow-md text-2xl self-end',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %>
+                  <%= link_to "new task", tasks_new_path, class: 'paper | shadow-md text-2xl self-end',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %>
+                  <%= link_to "view all categories", categories_path, class: 'paper | shadow-md text-2xl self-start',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %>
+                  <%= link_to "new category", categories_new_path, class: 'paper | shadow-md text-2xl self-start',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %>
+                </div>
     </section>
   </main>
+

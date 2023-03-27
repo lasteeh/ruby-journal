@@ -9,9 +9,9 @@
 <% end %>
 
 
-<main class="new-task | flex flex-col items-center p-8">
+<main class="new-task | flex flex-col items-center gap-2 p-8">
 
-<%= form_with scope: :task, url: task_update_path, class: "paper | grid grid-cols-1 grid-row-[auto_repeat(4,1fr)] items-stretch gap-[18px] p-4 w-[min(500px,90%)]", method: :patch do |form| %>
+<%= form_with scope: :task, url: task_update_path, class: "paper | grid grid-cols-1 grid-row-[auto_repeat(4,1fr)] items-stretch gap-[18px] p-4 w-[min(500px,90%)] mb-4", method: :patch do |form| %>
     <p class="uppercase text-xl bg-neutral-300 text-center border-y-2 border-black/40 opacity-90">Create a task</p>
 
 <div class="bg-neutral-500/10 p-1 border-y-2 border-black/40 grid grid-cols-[min-content_auto]">
@@ -39,8 +39,10 @@
     <%= form.submit "\u{1F5F9} submit", class: 'text-4xl font-hand cursor-pointer' %>
 <% end %>
 
-<%= link_to "<i class='fa-solid fa-pencil'></i> go back to task".html_safe, task_show_path(@task.id), class: "font-hand text-4xl my-4" %>
-<%= link_to "<i class='fa-solid fa-clipboard-list text-yellow-400'></i> see all tasks".html_safe, tasks_path, class: "font-hand text-4xl my-4" %>
+<%= link_to "<i class='fa-solid fa-pencil'></i> go back to task".html_safe, task_show_path(@task.id), class: "font-hand text-4xl " %>
+<%= link_to "<i class='fa-solid fa-clipboard-list text-yellow-400'></i> see all tasks".html_safe, tasks_path, class: "font-hand text-4xl " %>
+<%= link_to "<i class='fa-solid fa-layer-group text-yellow-400'></i> view all categories".html_safe, categories_path, class: "font-hand text-4xl " %>
+<%= link_to "<i class='fa-solid fa-note-sticky text-yellow-400'></i> create new category".html_safe, categories_new_path, class: "font-hand text-4xl " %>
 
 </main>
 

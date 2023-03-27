@@ -29,9 +29,13 @@
             <p class="text-2xl"><%= @category.description %></p>
         </div>
         <div class="flex flex-col gap-4 text-center">
-            <%= link_to "All Categories", categories_path, class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %>
+            <%= link_to "view All Categories", categories_path, class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %>
             <%= link_to "Edit Category", category_edit_path, class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %>
             <%= button_to "Delete", category_delete_path,  form: { class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" } , method: :delete%>
+        </div>
+        <div class="flex flex-col gap-4 text-center">
+            <%= link_to "view aLL tasks", tasks_path, class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %>
+            <%= link_to "create new task", tasks_new_path, class: 'paper | shadow-md text-2xl',  style: "transform: rotate(#{rand(-4..4)}deg);", onmouseover: "this.style.transform='rotate(0deg) translateY(-16%)';", onmouseout:"this.style.transform='rotate(#{rand(-4..4)}deg)'" %>
         </div>
         <%= button_to "<i class='fa-#{@category.favorite ? 'solid' : 'regular'} fa-heart text-red-400 drop-shadow-md shadow-white rotate-[-4deg]'></i>".html_safe, category_favorite_path, form: {class:'absolute top-[90%] right-[5%]'} , method: :put %>
 

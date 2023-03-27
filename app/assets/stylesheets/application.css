@@ -184,3 +184,20 @@
   scale: 1.05;
   z-index: 2;
 }
+
+.sticky-note {
+  scrollbar-width: thin;
+}
+
+.sticky-note::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sticky-note::-webkit-scrollbar-track {
+  background-color: hsl(64, 94%, 84%);
+}
+
+.sticky-note::-webkit-scrollbar-thumb {
+  background-color: hsl(58, 83%, 56%);
+  border-radius: 3px;
+}
