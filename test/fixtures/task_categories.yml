@@ -1,0 +1,7 @@
+task_category1:
+  task_id: 1
+  category_id: 1
+
+task_category2:
+  task_id: 2
+  category_id: 2

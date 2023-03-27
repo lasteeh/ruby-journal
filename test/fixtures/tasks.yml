@@ -1,9 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  description: MyText
-  deadline: 2023-03-20
+# one:
+#   description: MyText
+#   deadline: 2023-03-20
 
-two:
-  description: MyText
-  deadline: 2023-03-20
+# two:
+#   description: MyText
+#   deadline: 2023-03-20
+
+task1:
+  description: "This is the description of task 1."
+  deadline: "2023-04-01"
+  user_id: 1
+  completed: false
+
+task2:
+  description: "This is the description of task 2."
+  deadline: "2023-04-02"
+  user_id: 2
+  completed: true
