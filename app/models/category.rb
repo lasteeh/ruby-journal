@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+    attribute :favorite, :boolean, default: false
+
     before_validation :name_downcase
 
     belongs_to :user
