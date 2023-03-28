@@ -6,6 +6,8 @@ class CategoryTest < ActiveSupport::TestCase
   # end
   def setup
     @category = categories(:category1)
+    @task1 = tasks(:task1)
+    @task2 = tasks(:task2)
   end
 
   test "should be valid" do
@@ -23,6 +25,18 @@ class CategoryTest < ActiveSupport::TestCase
   end
 
   test "favorite should default to false" do
+    @category.favorite = nil
     assert_not @category.favorite?
+  end
+
+  test "can have 1 task" do
+    @category.tasks << @task1
+    assert_equal 1, @category.tasks.count
+  end
+
+  test "can have multiple tasks" do
+    @category.tasks << @task1
+    @category.tasks << @task2
+    assert_equal 2, @category.tasks.count
   end
 end
